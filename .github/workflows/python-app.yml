@@ -1,0 +1,71 @@
+#-------------------------------------------------------------------------------
+# Author:      PGOnline
+# Created:     21/05/2016
+#-------------------------------------------------------------------------------
+
+class Tree:
+
+    def __init__ (self, inData):   # create node to hold left right and data
+        self.data = inData
+        self.left = None
+        self.right = None
+
+    def insert (self, newValue):
+        if self.data is not None:    # if the tree exists with something init
+            #################################         # if the new value is less than current data
+                if self.left is not None:   # if there left node is empty
+                    ################################ use recursion to move left 
+                else:
+                    self.left = Tree(newValue) # if the left node is empty add a new node
+            elif #####################  if its greater than new value
+                if self.right is not None:
+                    self.right.insert(newValue)  # traverse down right until we find an empy right pointer
+                else:
+                    self.right = Tree(newValue)
+            else:
+                return
+        else:
+            self.data = newValue
+            print("new node added")
+
+
+    def printTree(self):
+        if self.left is not None:  #full
+            self.left.printTree()
+        print(self.data, end = ' ')   # print current node
+        if self.right is not None:  # full
+            self.right.printTree()
+
+    def printPostTree(self):
+        print(self.data, end = ' ')
+        if self.left is not None:
+            self.left.printPostTree()
+        if self.right is not None:
+            self.right.printPostTree()
+
+    def printPreTree(self):
+        if self.left is not None:
+            self.left.printPreTree()
+        if self.right is not None:
+            self.right.printPreTree()
+        print(self.data, end = ' ')
+
+print ("==============================================")
+print ("=== Loading tree with numbers ===")
+tree = Tree(50)
+tree.insert(30)
+tree.insert(20)
+tree.insert(40)
+tree.insert(10)
+tree.insert(80)
+tree.insert(100)
+tree.insert(60)
+tree.insert(70)
+tree.insert(90)
+print ("\n=== In-order traversal of tree ===")
+tree.printTree ()
+print ("\n=== Pre-order traversal of tree ===")
+tree.printPreTree ()
+print ("\n=== Post-order traversal of tree ===")
+tree.printPostTree ()
+
